@@ -1,7 +1,5 @@
 //Cajero automatico//
 
-/*Qué tal primo, ahí más o menos le hice al wey, estaba pensando en usar ciclo for en la parte del usuario y pin, estuve batallando porque aun me cuesta 
-pero tú orientame o puteame jeje */
 
 #include<iostream>
 
