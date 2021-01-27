@@ -1,14 +1,20 @@
+//Cajero automatico//
+
+#include<iostream>
 #include<conio.h>
 #include<stdlib.h>
+#include<fstream>
 
 using namespace std;
 
+void aniadir();
+
 int main(){
+	aniadir();
 	int usuario,user[3] = {300,301,302},PIN[3] = {1357,2468,9182},opc,a,salir;
-	int saldo_inicial = 10000,i,s,pines;
+	int saldo_inicial = 10000,i,s,pines,extra;
 	double saldo = 0;
 	int retiro,impri;
-	char extra;
 	
 	cout<<"\t*** Bienvenido al Cajero Automatico ***\n"<<endl;
 	
@@ -75,10 +81,8 @@ int main(){
 				break;
 			
 			case 4:
-				cout<<"Imprimiendo saldo: "<<impri;
-				cin>>impri;
-				impri = saldo_inicial;
-				cout<<"Su saldo impreso es de: "<<saldo;
+				cout<<"Imprimiendo saldo: "<<saldo_inicial;
+				cin>>saldo_inicial;
 				break;
 				
 			case 5: 
@@ -91,4 +95,19 @@ int main(){
 	system("pause");
 	getch();
 	return 0;	
+}
+
+void aniadir(){
+	ofstream archivo;
+	
+	archivo.open("cajero_automatico.txt",ios::app);
+	
+	if(archivo.fail()){
+		cout<<"No se puedo abrir el archivo";
+		exit(1);
+	}
+	
+	archivo<<"prueba";
+	
+	archivo.close();
 }
