@@ -10,11 +10,11 @@ using namespace std;
 void aniadir();
 
 int main(){
-	aniadir();
 	int usuario,user[3] = {300,301,302},PIN[3] = {1357,2468,9182},opc,a,salir;
-	int saldo_inicial = 10000,i,s,pines,extra;
+	int saldo_inicial = 10000,i,s,pines;
 	double saldo = 0;
 	int retiro,impri;
+	char extra;
 	
 	cout<<"\t*** Bienvenido al Cajero Automatico ***\n"<<endl;
 	
@@ -60,7 +60,7 @@ int main(){
 				break;
 				
 			case 2:
-				cout<<"Digite la cantidad de dinero que desea retirar: "<<endl;
+				cout<<"Digite la cantidad de dinero que desea retirar: "<<retiro<<endl;
 				cin>>retiro;
 				
 				if(retiro > saldo_inicial){
@@ -76,12 +76,20 @@ int main(){
 			case 3: 
 				cout<<"Digite la cantidad de dinero que desea ingresar: "<<extra<<endl;
 				cin>>extra;
-				saldo = saldo_inicial + extra;
-				cout<<"Su nuevo saldo es de: "<<saldo;
-				break;
+				
+				if(extra < saldo_inicial + extra){
+					
+				}
+				
+				else{
+				saldo = saldo_inicial + extra;				
+				cout<<"Su nuevo saldo es de: "<<endl;break;
+				cin>>extra;
+				}
 			
 			case 4:
-				cout<<"Imprimiendo saldo: "<<saldo_inicial;
+				aniadir();
+				cout<<"Imprimiendo saldo: "<<saldo_inicial<<endl;
 				cin>>saldo_inicial;
 				break;
 				
