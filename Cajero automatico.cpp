@@ -10,8 +10,8 @@ using namespace std;
 void aniadir();
 
 int main(){
-	int usuario,user[3] = {300,301,302},PIN[3] = {1357,2468,9182},opc,a,salir;
-	int saldo_inicial = 10000,i,s,pines;
+	int user[3] = {3000,3001,3002},PIN[3] = {1357,2468,9182},opc,a,salir;
+	int saldo_inicial = 10000,i,s,pines,usuario;
 	double saldo = 0;
 	int retiro,impri;
 	char extra;
@@ -21,26 +21,19 @@ int main(){
 	cout<<"Ingresa tu usuario: "<<endl;
 	cin>>usuario;
 	for(i = 0; i < 3; i++){
-		if(usuario != user[i]){
-			continue;
-		}	
-		else{
+		if(usuario == user[i]){
 			a = i;
-			break;
 		}	
+		
 	}
 	
 	cout<<"Ingresa tu PIN:"<<endl;
 	cin>>pines;
-	for(i = 0; i < 3; i++){
-		if(pines != PIN[i]){
-			continue;
-		}
-		else{
-			s = i;
-			break;
-		}
-	}
+	if((usuario == user[0] && pines == PIN[0]) ||
+	(usuario == user[1] && pines == PIN[1]) ||
+	(usuario == user[2] && pines == PIN[2])){
+	
+		
 		do{
 			system ("cls");
 			cout<<"\t*** Bienvenido a las opciones del cajero ***"<<endl;
@@ -53,7 +46,6 @@ int main(){
 			cin>>opc;
 	
 		switch(opc){
-			getch();
 			case 1:
 				cout<<"Su saldo es de: "<<saldo_inicial<<endl;
 				cin>>saldo_inicial;
@@ -77,28 +69,29 @@ int main(){
 				cout<<"Digite la cantidad de dinero que desea ingresar: "<<extra<<endl;
 				cin>>extra;
 				
-				if(extra < saldo_inicial + extra){
+				if(saldo = saldo_inicial + extra){
 					
 				}
 				
 				else{
 				saldo = saldo_inicial + extra;				
-				cout<<"Su nuevo saldo es de: "<<endl;break;
+				cout<<"Su nuevo saldo es de: "<<endl;
 				cin>>extra;
 				}
-			
+				break;			
 			case 4:
 				aniadir();
 				cout<<"Imprimiendo saldo: "<<saldo_inicial<<endl;
 				cin>>saldo_inicial;
 				break;
 				
-			case 5: 
-				cout<<"Pulse [enter] para salir"<<endl;
-				cin>>salir;
-			}
+			default: cout<<"Presione ENTER para salir"<<endl;	
+				}
 			getch();
 		}while(opc != 5);
+	}else{
+		cout << "Error de usuario y/o PIN"<<endl;
+		}
 	
 	system("pause");
 	getch();
