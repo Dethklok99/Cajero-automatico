@@ -7,14 +7,18 @@
 
 using namespace std;
 
-void aniadir();
+void Saldo();
+void Retiro();
+void Cargar();
+void Recibo();
+void Salir();
+
+float saldo_inicial = 10000, retiro, saldo, cargar;
 
 int main(){
 	int user[3] = {3000,3001,3002},PIN[3] = {1357,2468,9182},opc,a,salir;
-	int saldo_inicial = 10000,i,s,pines,usuario;
-	double saldo = 0;
-	int retiro,impri;
-	char extra;
+	float s,pines,usuario;
+	int impri,i;
 	
 	cout<<"\t*** Bienvenido al Cajero Automatico ***\n"<<endl;
 	
@@ -47,68 +51,93 @@ int main(){
 	
 		switch(opc){
 			case 1:
-				cout<<"Su saldo es de: "<<saldo_inicial<<endl;
-				cin>>saldo_inicial;
+				Saldo();
+	  			getch ();
 				break;
 				
 			case 2:
-				cout<<"Digite la cantidad de dinero que desea retirar: "<<retiro<<endl;
-				cin>>retiro;
-				
-				if(retiro > saldo_inicial){
-					cout<<"No cuenta con saldo suficiente para realizar la transaccion"<<endl;
-				
-				}
-				else{
-					saldo = saldo_inicial - retiro;
-					cout<<"Su nuevo saldo es de: "<<saldo<<endl;
-					break;			
-				}	
+				Retiro();
+	  			getch ();
+				break;
 							
 			case 3: 
-				cout<<"Digite la cantidad de dinero que desea ingresar: "<<extra<<endl;
-				cin>>extra;
-				
-				if(saldo = saldo_inicial + extra){
-					
-				}
-				
-				else{
-				saldo = saldo_inicial + extra;				
-				cout<<"Su nuevo saldo es de: "<<endl;
-				cin>>extra;
-				}
-				break;			
+				Cargar();
+	 			getch ();
+				break;		
 			case 4:
-				aniadir();
-				cout<<"Imprimiendo saldo: "<<saldo_inicial<<endl;
-				cin>>saldo_inicial;
+				Recibo();
+	  			getch ();
 				break;
 				
-			default: cout<<"Presione ENTER para salir"<<endl;	
+			case 5:
+				Salir();
+				getch();
+				break;
+			
+			default: 
+				cout<<"\n\tOpcion no valida. Digite una opcion correcta.";
+				getch ();
+				break;
 				}
 			getch();
-		}while(opc != 5);
-	}else{
-		cout << "Error de usuario y/o PIN"<<endl;
-		}
+			}while(opc != 5);
+			
+		}else{
+				cout << "Error de usuario y/o PIN"<<endl;
+			}	
 	
 	system("pause");
 	getch();
 	return 0;	
 }
 
-void aniadir(){
-	ofstream archivo;
+void Saldo(){
+	system("cls");
+	cout<<"\n\t**Menu de saldo**"<<endl;
+	cout<<"\n\tSu saldo actual es de " << saldo_inicial <<" pesos."<< endl;
+}
+
+void Retiro(){
+		system("cls");
+		cout<<"\n\t**Menu de retiro de efectivo**"<<endl;
+	  cout<< "\n\tIngrese la cantidad que desea retirar: "; cin>>retiro;
+	  	saldo = saldo_inicial - retiro;
+	  	if (saldo>0){
+	  		cout<<"\n\tSu saldo restante es de "<<saldo<<" pesos."<< endl;
+	 	 }
+	 	 else{
+	  		cout<<"\n\tNo cuenta con la cantidad sufiente para retirar."<< endl;
+		  }
+}
+
+void Cargar(){
+		system("cls");
+		cout<<"\n\t**Menu de cargar saldo**"<<endl;
+	  cout<<"\n\tIngrese la cantidad que desea cargar: "; cin>>cargar;
+		saldo = saldo_inicial + cargar;
+	  	cout<<"\n\tSu saldo actual es de "<<saldo<< " pesos."<< endl;
+}
+
+void Recibo(){
+	system("cls");
+	ofstream ticket;
 	
-	archivo.open("cajero_automatico.txt",ios::app);
+	ticket.open("recibo.txt", ios::out);
 	
-	if(archivo.fail()){
-		cout<<"No se puedo abrir el archivo";
+	if(ticket.fail()){
+		cout<<"ERRROR no se puede imprimir el recibo";
 		exit(1);
 	}
 	
-	archivo<<"prueba";
+	cout<<"\tRecibo creado"<<endl;
+	ticket<<"\tRecibo del cajero."<<endl;
+	ticket<<"\t\nSu saldo actual es de "<<cargar + saldo_inicial<<" pesos."<<endl;
+	ticket<<"\t\nGracias por su preferencia."<<endl;
 	
-	archivo.close();
+	ticket.close();
+}
+
+void Salir(){
+	system("cls"); 
+		cout<< "\n\t\tFue un placer poder atenderle."<<endl;	
 }
